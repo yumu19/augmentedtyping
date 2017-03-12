@@ -30,6 +30,11 @@ function changeParticleNum(i){
   initParticle();
 }
 
+function changeParticleRad(i){
+  particleRadii = i;
+  initParticle();
+}
+
 function initParticle(){
   for (var i=0;i<particleNum;i++){
     particles[i] = new particle(particleSpeed,particleDiffusion,particleRadii);
@@ -53,12 +58,23 @@ function setup() {
   	var val = $(this).val();
     $("#pnum_txt").text(val);
   } );
+  $("input#radii_range").on('input', function () {
+  	var val = $(this).val();
+    $("#radii_txt").text(val);
+  } );
 
   // パーティクル数の更新
   $("input#pnum_range" ).change( function () {
     var val = $(this).val();
     changeParticleNum(val);
   } );
+  // パーティクル半径の更新
+  $("input#radii_range" ).change( function () {
+    var val = $(this).val();
+    changeParticleRad(val);
+  } );
+
+
 }
 
 function draw() {
