@@ -21,8 +21,7 @@ var particleSpeed = 10;
 var particleDiffusion = 80;
 var particleRadii = 16;
 var sound_number = 0;
-
-
+var effectType = "particle"
 
 function changeParticleNum(i){
   // alert("change particle num");
@@ -51,6 +50,10 @@ function changeSpeed(i){
 
 function changeBeam(i){
   beamtype = i;
+}
+
+function changeEffect(i){
+  effectType = i;
 }
 
 function initParticle(){
@@ -123,6 +126,10 @@ function setup() {
     var val = $(this).val();
     changeSpeed(val);
   } );
+  $("select#effect" ).change( function () {
+    var val = $(this).val();
+    changeEffect(val);
+  } );
 }
 
 function draw() {
@@ -160,15 +167,18 @@ function draw() {
 function keyPressed() {
   prevKc = kc;
   kc = keyCode;
-  if (beamtype != "none") {
-    beams[currentBeam].launch(kc, "near");
-  }
-  for (var i=0;i<particleNum;i++){
-    particles[i].launch(kc);
-  }
-  currentBeam += 1;
-  if (currentBeam >= beamNum){
-    currentBeam = 0;
+  if (effectType == "beam" ){
+    if (beamtype != "none") {
+      beams[currentBeam].launch(kc, "near");
+    }
+    currentBeam += 1;
+    if (currentBeam >= beamNum){
+      currentBeam = 0;
+    }
+  } else if (effectType == "particle"){
+    for (var i=0;i<particleNum;i++){
+      particles[i].launch(kc);
+    }
   }
   console.log(kc);
   if (kc == 13){ //Enter
