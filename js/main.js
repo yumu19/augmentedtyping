@@ -21,6 +21,11 @@ var particleSpeed = 10;
 var particleDiffusion = 80;
 var particleRadii = 16;
 var sound_number = 0;
+var totalWaveNum = 20;
+var waves = [totalWaveNum];
+var waveNum = 4;
+var waveInterval = 24;
+var currentWave = 0;
 var effectType = "particle"
 
 function changeParticleNum(i){
@@ -73,6 +78,9 @@ function setup() {
     beams[i] = new charBeam();
   }
   initParticle();
+  for (var i=0;i<totalWaveNum;i++){
+    waves[i] = new wave();
+  }
 
   // スライダーの移動に合わせて横の数字を更新
   $("input#pnum_range").on('input', function () {
@@ -154,33 +162,61 @@ function draw() {
   rect(keys[70].x, keys[70].y, keys[70].w, keys[70].h, 4);
   rect(keys[75].x, keys[75].y, keys[75].w, keys[75].h, 4);
   rect(keys[76].x, keys[76].y, keys[76].w, keys[76].h, 4);
-  for (i=0;i<beamNum;i++){
-    beams[i].move();
-    beams[i].display();
-  }
-  for (var i=0;i<particleNum;i++){
-    particles[i].move();
-    particles[i].display();
+
+  switch (effectType){
+    case "beam":
+      for (i=0;i<beamNum;i++){
+        beams[i].move();
+        beams[i].display();
+      }
+      break;
+    case "particle":
+      for (var i=0;i<particleNum;i++){
+        particles[i].move();
+        particles[i].display();
+      }
+      break;
+    case "wave":
+      for (var i=0;i<totalWaveNum;i++){
+        waves[i].diffuse();
+        waves[i].display();
+      }
+      break;
   }
 }
 
 function keyPressed() {
   prevKc = kc;
   kc = keyCode;
-  if (effectType == "beam" ){
-    if (beamtype != "none") {
-      beams[currentBeam].launch(kc, "near");
-    }
-    currentBeam += 1;
-    if (currentBeam >= beamNum){
-      currentBeam = 0;
-    }
-  } else if (effectType == "particle"){
-    for (var i=0;i<particleNum;i++){
-      particles[i].launch(kc);
-    }
+  switch (effectType) {
+    case "beam":
+      if (beamtype != "none") {
+        beams[currentBeam].launch(kc, "near");
+      }
+      currentBeam += 1;
+      if (currentBeam >= beamNum){
+        currentBeam = 0;
+      }
+      break;
+    case "particle":
+      for (var i=0;i<particleNum;i++){
+        particles[i].launch(kc);
+      }
+      break;
+    case "wave":
+      var r = 0;
+      for (var i=0;i<waveNum;i++) {
+        waves[currentWave].setR(r);
+        waves[currentWave].launch(kc);
+        currentWave += 1;
+        r += waveInterval;
+        if (currentWave >= totalWaveNum){
+          currentWave = 0;
+        }
+      }
+      break;
   }
-  console.log(kc);
+  //console.log(kc);
   if (kc == 13){ //Enter
     changeColor();
     fill(c);
