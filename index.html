@@ -17,7 +17,7 @@
     <script src="js/main.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="main.css" type="text/css" >
-    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: bottom;} </style>
   </head>
   <body>
     <!-- <select name="ddd" onChange="changeParticleNum()">
@@ -25,14 +25,34 @@
       <option value="direct">direct</option>
       <option value="none">none</option>
     </select> -->
-    <div id="particle">
+    <div class="adjustArea">
+    <div class="adjust" id="particle">
       Particles <div id="pnum_txt">0</div>
       <input type="range" name="particlenum" id="pnum_range" min="1" max="255">
     </div>
-    <div id="radii">
+    <div class="adjust" id="radii">
       Radii <div id="radii_txt">0</div>
       <input type="range" name="radiinum" id="radii_range" min="1" max="32">
     </div>
+    <div class="adjust" id="diffR">
+      Diffusion <div id="diffR_txt">0</div>
+      <input type="range" name="diffRnum" id="diffR_range" min="1" max="240">
+    </div>
+    <div class="adjust" id="sound">
+      Sound <div id="sound_txt">0</div>
+      <input type="range" name="soundnum" id="sound_range" min="0" max="14">
+    </div>
+    <div class="adjust" id="beam">
+      <div>Beam</div>
+      None<input type="radio" name="beam" value="none" id="beam_none">
+      Limit<input type="radio" name="beam" value="limit" id="beam_limit">
+      Full<input type="radio" name="beam" value="full" id="beam_full" checked>
+    </div>
+    <div class="adjust" id="beam_speed">
+      Speed <div id="speed_txt">0</div>
+      <input type="range" name="beamnum" id="speed_range" min="1" max="48">
+    </div>
+  </div>
     <!-- <select name="layout" onChange="changeLayout(this.options[this.options.selectedIndex].text)">
       <option value="qwerty">qwerty</option>
       <option value="dvorak">dvorak</option>
@@ -41,7 +61,7 @@
       <option value="turkish">turkish</option>
       <option value="neo">neo</option>
     </select> -->
-    <input type="button" name="start" value="start" onClick="startRecord()">
-    <input type="button" name="stop" value="stop" onClick="stopRecord()">
+    <!-- <input type="button" name="start" value="start" onClick="startRecord()">
+    <input type="button" name="stop" value="stop" onClick="stopRecord()"> -->
   </body>
 </html>

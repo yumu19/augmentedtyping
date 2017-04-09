@@ -5,7 +5,8 @@ var x,y,w,h;
 var dipX = 17;
 var dipY = 17;
 var origX = 20;
-var origY = 300;
+var origY = 100;
+var origY = 250;
 var keys = [];
 var c;
 var offsetX = 2;
@@ -19,7 +20,7 @@ var particles = [particleNum];
 var particleSpeed = 10;
 var particleDiffusion = 80;
 var particleRadii = 16;
-
+var sound_number = 0;
 
 
 
@@ -33,6 +34,23 @@ function changeParticleNum(i){
 function changeParticleRad(i){
   particleRadii = i;
   initParticle();
+}
+
+function changeParticleDif(i){
+  particleDiffusion = i;
+  initParticle();
+}
+
+function changeSound(i){
+  sound_number = i;
+}
+
+function changeSpeed(i){
+  speed = i;
+}
+
+function changeBeam(i){
+  beamtype = i;
 }
 
 function initParticle(){
@@ -62,6 +80,18 @@ function setup() {
   	var val = $(this).val();
     $("#radii_txt").text(val);
   } );
+  $("input#diffR_range").on('input', function () {
+  	var val = $(this).val();
+    $("#diffR_txt").text(val);
+  } );
+  $("input#sound_range").on('input', function () {
+  	var val = $(this).val();
+    $("#sound_txt").text(val);
+  } );
+  $("input#speed_range").on('input', function () {
+  	var val = $(this).val();
+    $("#speed_txt").text(val);
+  } );
 
   // パーティクル数の更新
   $("input#pnum_range" ).change( function () {
@@ -73,8 +103,26 @@ function setup() {
     var val = $(this).val();
     changeParticleRad(val);
   } );
+  // パーティクル飛翔半径の更新
+  $("input#diffR_range" ).change( function () {
+    var val = $(this).val();
+    changeParticleDif(val);
+  } );
 
+  $("input#sound_range" ).change( function () {
+    var val = $(this).val();
+    changeSound(val);
+  } );
 
+  $( 'input[name="beam"]:radio' ).change( function () {
+    var val = $(this).val();
+    changeBeam(val);
+  } );
+
+  $("input#speed_range" ).change( function () {
+    var val = $(this).val();
+    changeSpeed(val);
+  } );
 }
 
 function draw() {
@@ -112,7 +160,9 @@ function draw() {
 function keyPressed() {
   prevKc = kc;
   kc = keyCode;
-  beams[currentBeam].launch(kc, "near");
+  if (beamtype != "none") {
+    beams[currentBeam].launch(kc, "near");
+  }
   for (var i=0;i<particleNum;i++){
     particles[i].launch(kc);
   }
@@ -140,13 +190,13 @@ function keyPressed() {
         currentBeam = 0;
       }
     }
-    playAudio('assets/key.mp3');
+    playAudio('assets/'+sound_number+'.mp3');
   } else {
     var n = numByKc(kc);
     if (n != 0){
       fill(c);
       rect(keys[n].x, keys[n].y, keys[n].w, keys[n].h, 4);
-      playAudio('assets/key.mp3');
+      playAudio('assets/'+sound_number+'.mp3');
     }
   }
 }

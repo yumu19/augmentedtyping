@@ -2,3 +2,11 @@ body {
   background-color: #000;
   color: #fff;
 }
+
+.adjust {
+	float: left;
+}
+
+.adjustArea {
+	overflow: hidden;
+}

@@ -1,5 +1,6 @@
 var speed = 12;
 var angle = 0;
+var beamtype = "full";
 
 function charBeam() {
   this.x = 9999;
@@ -27,6 +28,9 @@ function charBeam() {
     if ((this.y < 0)&&(this.screen == "near")) {
       this.moveFar();
     }
+    if ((beamtype == "limit")&&(this.y < origY + 25)) {
+      this.moveFar();
+    }
     //console.log(this.x);
   }
   this.receive = function(x,speedX,speedY,c){
@@ -38,7 +42,7 @@ function charBeam() {
   }
 
   this.display = function(){
-    textSize(64);
+    textSize(32);
     text(this.c,this.x,this.y);
   }
 
