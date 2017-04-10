@@ -31,7 +31,7 @@
     </select> -->
     <div class="adjustArea">
     <div class="adjust" id="sound_div">
-      Sound
+      Sound<br />
       <select name="sound" id="sound">
         <option value="none">0: none</option>
         <option value="keyboard">1: keyboard</option>
@@ -43,8 +43,9 @@
       </select>
     </div>
     <div class="adjust" id="effect_div">
-      Effect
+      Visual<br />
       <select name="effect" id="effect">
+        <option value="none">0: none</option>
         <option value="particle">1: particle</option>
         <option value="ray">2: ray</option>
         <option value="beam">3: beam</option>
@@ -53,31 +54,48 @@
       </select>
     </div>
     <div class="adjust" id="particle">
-      Particles <div id="pnum_txt">0</div>
+      Particle Num <div id="pnum_txt">0</div>
       <input type="range" name="particlenum" id="pnum_range" min="1" max="255">
     </div>
-    <div class="adjust" id="radii">
-      Radii <div id="radii_txt">0</div>
+    <!-- <div class="adjust" id="radii">
+      Particle Radii <div id="radii_txt">0</div>
       <input type="range" name="radiinum" id="radii_range" min="1" max="32">
-    </div>
+    </div> -->
     <div class="adjust" id="diffR">
-      Diffusion <div id="diffR_txt">0</div>
+      Particle Diff <div id="diffR_txt">0</div>
       <input type="range" name="diffRnum" id="diffR_range" min="1" max="240">
     </div>
-    <!-- <div class="adjust" id="sound">
-      Sound <div id="sound_txt">0</div>
-      <input type="range" name="soundnum" id="sound_range" min="0" max="14">
-    </div> -->
-    <div class="adjust" id="beam">
-      <div>Beam</div>
+    <div class="adjust" id="ray_speed">
+      Ray Speed <div id="ray_speed_txt">0</div>
+      <input type="range" name="ray_speed_num" id="ray_speed_range" min="1" max="48">
+    </div>
+    <div class="adjust" id="ray_diff">
+      Ray Diff <div id="ray_diff_txt">0</div>
+      <input type="range" name="ray_diff_num" id="ray_diff_range" min="48" max="1000">
+    </div>
+    <div class="adjust" id="beam_speed">
+      Beam Speed <div id="speed_txt">0</div>
+      <input type="range" name="beamnum" id="speed_range" min="1" max="48">
+    </div>
+    <!-- <div class="adjust" id="beam">
+      <div>Beam Type</div>
       None<input type="radio" name="beam" value="none" id="beam_none">
       Limit<input type="radio" name="beam" value="limit" id="beam_limit">
       Full<input type="radio" name="beam" value="full" id="beam_full" checked>
+    </div> -->
+    <div class="adjust" id="wave_speed">
+      Wave Speed <div id="wave_speed_txt">0</div>
+      <input type="range" name="wave_speed_num" id="wave_speed_range" min="1" max="48">
     </div>
-    <div class="adjust" id="beam_speed">
-      Speed <div id="speed_txt">0</div>
-      <input type="range" name="beamnum" id="speed_range" min="1" max="48">
+    <div class="adjust" id="wave_diff">
+      Wave Diff <div id="wave_diff_txt">0</div>
+      <input type="range" name="wave_diff_num" id="wave_diff_range" min="48" max="1000">
     </div>
+    <div class="adjust" id="limit_checkbox">
+      Hide
+      <input type="checkbox" name="limitcheck" value="bar" />
+    </div>
+
   </div>
     <!-- <select name="layout" onChange="changeLayout(this.options[this.options.selectedIndex].text)">
       <option value="qwerty">qwerty</option>

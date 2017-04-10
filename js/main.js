@@ -34,8 +34,9 @@ var totalStellarNum = 128;
 var stellars = [totalStellarNum];
 var stellarNum = 16;
 var currentStellar = 0;
-var effectType = "stellar"
+var effectType = "none"
 var soundType = "none"
+var effectLimit = false;
 
 function changeParticleNum(i){
   // alert("change particle num");
@@ -120,6 +121,22 @@ function setup() {
   	var val = $(this).val();
     $("#speed_txt").text(val);
   } );
+  $("input#ray_speed_range").on('input', function () {
+  	var val = $(this).val();
+    $("#ray_speed_txt").text(val);
+  } );
+  $("input#ray_diff_range").on('input', function () {
+  	var val = $(this).val();
+    $("#ray_diff_txt").text(val);
+  } );
+  $("input#wave_speed_range").on('input', function () {
+  	var val = $(this).val();
+    $("#wave_speed_txt").text(val);
+  } );
+  $("input#wave_diff_range").on('input', function () {
+  	var val = $(this).val();
+    $("#wave_diff_txt").text(val);
+  } );
 
   // パーティクル数の更新
   $("input#pnum_range" ).change( function () {
@@ -156,6 +173,23 @@ function setup() {
   } );
   $("select#sound" ).change( function () {
     soundType = $(this).val();
+  } );
+
+  $("input#ray_speed_range" ).change( function () {
+    raySpeed = $(this).val();
+  } );
+  $("input#ray_diff_range" ).change( function () {
+    rayLimit = $(this).val();
+  } );
+  $("input#wave_speed_range" ).change( function () {
+    waveSpeed = $(this).val();
+    console.log(waveSpeed);
+  } );
+  $("input#wave_diff_range" ).change( function () {
+    waveLimit = $(this).val();
+  } );
+  $("[name=limitcheck]").change( function () {
+    effectLimit = $("[name=limitcheck]").prop("checked");
   } );
 }
 
@@ -217,6 +251,11 @@ function draw() {
         stellars[i].display();
       }
       break;
+  }
+  if (effectLimit){
+    fill(0);
+    noStroke();
+    rect(0,0,1280,origY);
   }
 }
 

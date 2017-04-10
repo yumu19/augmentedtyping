@@ -1,17 +1,18 @@
-var speed = 12;
 var angle = 0;
-var limitR = 360;
+var waveLimit = 360;
+var waveSpeed = 6;
 
 function wave() {
   this.x = 9999;
   this.y = 9999;
-  this.diffspeed = 6;
   this.r = 1;
   this.n = 0;
   this.c = " ";
   this.color = color(0,0,0);
+  this.hidden = true;
 
   this.launch = function(kc,sc){
+    this.hidden = false;
     this.n = numByKc(kc);
     this.c = charByKc(kc);
     if (this.n != 0) {
@@ -22,12 +23,16 @@ function wave() {
   }
 
   this.diffuse = function(){
-    this.r += this.diffspeed;
-    if (this.r > limitR){
-      this.moveFar();
+    if (!this.hidden) {
+      this.r += Number(waveSpeed);
+      console.log(waveSpeed);
+      console.log(this.r);
+      if (this.r > waveLimit){
+        this.moveFar();
+        console.log("move far");
+      }
     }
   }
-
 
   this.display = function(){
     stroke(this.color);
@@ -40,7 +45,8 @@ function wave() {
   this.moveFar = function(){
     this.x = 9999;
     this.y = 9999;
-    this.r = 1;
+    this.r = 4;
+    this.hidden = true;
   }
 
   this.setR = function(r){
