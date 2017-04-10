@@ -10,6 +10,7 @@ function charBeam() {
   this.n = 0;
   this.screen = " ";
   this.c = " ";
+  this.color = color(0,0,0);
   this.launch = function(kc,sc){
     this.n = numByKc(kc);
     this.c = charByKc(kc);
@@ -20,6 +21,7 @@ function charBeam() {
       this.speedX = speed * Math.sin(angle);
       this.speedY = -1.0 * speed * Math.cos(angle);
       this.screen = sc;
+      this.color = randomColor();
     }
   }
   this.move = function(){
@@ -42,7 +44,9 @@ function charBeam() {
   }
 
   this.display = function(){
-    textSize(32);
+    textSize(64);
+    fill(this.color);
+
     text(this.c,this.x,this.y);
   }
 

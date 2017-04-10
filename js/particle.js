@@ -10,10 +10,7 @@ function particle(v,diffR,radii) {
   //  Math.random() * 0.5*v - v;
   this.n = 0;
 
-  this.r = Math.random() *(55) + 200;
-  this.g = Math.random() *(55) + 200;
-  this.b = Math.random() *(55) + 200;
-  this.color = color(this.r,this.g,this.b);
+  this.color = randomColor();
 
   this.launch = function(kc){
     this.n = numByKc(kc);

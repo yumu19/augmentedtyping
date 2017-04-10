@@ -32,7 +32,7 @@ var rayNum = 32;
 var currentRay = 0;
 var totalStellarNum = 128;
 var stellars = [totalStellarNum];
-var stellarNum = 32;
+var stellarNum = 16;
 var currentStellar = 0;
 var effectType = "stellar"
 

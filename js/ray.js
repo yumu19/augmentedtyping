@@ -14,6 +14,7 @@ function ray() {
   this.r = 12;
   this.n = 0;
   this.c = " ";
+  this.color = color(0,0,0);
 
   this.launch = function(kc,sc){
     this.n = numByKc(kc);
@@ -27,6 +28,7 @@ function ray() {
       this.y2 = this.y1 + rayR * Math.sin(this.theta);
       this.speedX = raySpeed * Math.cos(this.theta);
       this.speedY = raySpeed * Math.sin(this.theta);
+      this.color = randomColor();
     }
   }
 
@@ -44,7 +46,8 @@ function ray() {
   }
 
   this.display = function(){
-    stroke(c);
+    stroke(this.color);
+    strokeWeight(2);
 
     //fill(this.color);
     line(this.x1,this.y1,this.x2,this.y2);

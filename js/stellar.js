@@ -1,4 +1,4 @@
-var stellarR = 96;
+var stellarR = 128;
 var stellarStartRange = 20;
 var stellarDuration = 4;
 var TWO_PI = 2 * Math.PI;
@@ -41,6 +41,7 @@ function stellar() {
       // }
       this.startTime = Math.random()*stellarStartRange;
       this.endTime = this.startTime + stellarDuration;
+      this.color = randomColor();
     }
   }
 
@@ -56,8 +57,8 @@ function stellar() {
 
   this.display = function(){
     if (!this.hidden){
-      stroke(c);
-      noFill();
+      noStroke();
+      fill(this.color);
       //fill(this.color);
       // ellipse(this.x,this.y,10,10);
 
