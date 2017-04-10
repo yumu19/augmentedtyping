@@ -30,7 +30,11 @@ var totalRayNum = 128;
 var rays = [totalRayNum];
 var rayNum = 32;
 var currentRay = 0;
-var effectType = "ray"
+var totalStellarNum = 128;
+var stellars = [totalStellarNum];
+var stellarNum = 32;
+var currentStellar = 0;
+var effectType = "stellar"
 
 function changeParticleNum(i){
   // alert("change particle num");
@@ -73,6 +77,7 @@ function initParticle(){
 
 
 function setup() {
+  frameRate(30);
   createCanvas(1280, 800);
   k = "";
   textSize(1);
@@ -88,6 +93,10 @@ function setup() {
   for (var i=0;i<totalRayNum;i++){
     rays[i] = new ray();
   }
+  for (var i=0;i<totalStellarNum;i++){
+    stellars[i] = new stellar();
+  }
+
 
   // スライダーの移動に合わせて横の数字を更新
   $("input#pnum_range").on('input', function () {
@@ -195,6 +204,12 @@ function draw() {
         rays[i].display();
       }
       break;
+    case "stellar":
+      for (var i=0;i<totalStellarNum;i++){
+        stellars[i].proceed();
+        stellars[i].display();
+      }
+      break;
   }
 }
 
@@ -228,7 +243,6 @@ function keyPressed() {
         }
       }
       break;
-
     case "ray":
       var theta = 0;
       for (var i=0;i<rayNum;i++) {
@@ -241,7 +255,16 @@ function keyPressed() {
         }
       }
       break;
-  }
+    case "stellar":
+      for (var i=0;i<stellarNum;i++) {
+        stellars[currentStellar].launch(kc);
+        currentStellar += 1;
+        if (currentStellar >= totalStellarNum){
+          currentStellar = 0;
+        }
+      }
+      break;
+}
   //console.log(kc);
   if (kc == 13){ //Enter
     changeColor();
