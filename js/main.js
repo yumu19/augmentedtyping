@@ -26,7 +26,11 @@ var waves = [totalWaveNum];
 var waveNum = 4;
 var waveInterval = 24;
 var currentWave = 0;
-var effectType = "particle"
+var totalRayNum = 128;
+var rays = [totalRayNum];
+var rayNum = 32;
+var currentRay = 0;
+var effectType = "ray"
 
 function changeParticleNum(i){
   // alert("change particle num");
@@ -80,6 +84,9 @@ function setup() {
   initParticle();
   for (var i=0;i<totalWaveNum;i++){
     waves[i] = new wave();
+  }
+  for (var i=0;i<totalRayNum;i++){
+    rays[i] = new ray();
   }
 
   // スライダーの移動に合わせて横の数字を更新
@@ -182,6 +189,12 @@ function draw() {
         waves[i].display();
       }
       break;
+    case "ray":
+      for (var i=0;i<totalRayNum;i++){
+        rays[i].move();
+        rays[i].display();
+      }
+      break;
   }
 }
 
@@ -212,6 +225,19 @@ function keyPressed() {
         r += waveInterval;
         if (currentWave >= totalWaveNum){
           currentWave = 0;
+        }
+      }
+      break;
+
+    case "ray":
+      var theta = 0;
+      for (var i=0;i<rayNum;i++) {
+        theta = i * 2 * Math.PI / rayNum;
+        rays[currentRay].setTheta(theta);
+        rays[currentRay].launch(kc);
+        currentRay += 1;
+        if (currentRay >= totalRayNum){
+          currentRay = 0;
         }
       }
       break;

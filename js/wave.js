@@ -1,6 +1,6 @@
 var speed = 12;
 var angle = 0;
-var limitR = 360;
+var limitR = 2000;
 
 function wave() {
   this.x = 9999;
