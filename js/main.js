@@ -35,6 +35,7 @@ var stellars = [totalStellarNum];
 var stellarNum = 16;
 var currentStellar = 0;
 var effectType = "stellar"
+var soundType = "none"
 
 function changeParticleNum(i){
   // alert("change particle num");
@@ -151,8 +152,10 @@ function setup() {
     changeSpeed(val);
   } );
   $("select#effect" ).change( function () {
-    var val = $(this).val();
-    changeEffect(val);
+    effectType = $(this).val();
+  } );
+  $("select#sound" ).change( function () {
+    soundType = $(this).val();
   } );
 }
 
@@ -171,13 +174,17 @@ function draw() {
   for(j=0;j<77;j++){
     rect(keys[j].x, keys[j].y, keys[j].w, keys[j].h, 4);
   }
-  // fill(color(0,0,0));
-  // strokeWeight(0);
-  // rect(1120,origY+2*dipY+39+66+1,30,64,4); // Enterキー内の線を削除
-  fill(c);
+  //fill(c);
+  strokeWeight(1);
   rect(keys[70].x, keys[70].y, keys[70].w, keys[70].h, 4);
   rect(keys[75].x, keys[75].y, keys[75].w, keys[75].h, 4);
   rect(keys[76].x, keys[76].y, keys[76].w, keys[76].h, 4);
+
+  // Enterキー内の線を削除
+  fill(0);
+  strokeWeight(0);
+  rect(1120,origY+2*dipY+39+66+1,30,64,4);
+
 
   switch (effectType){
     case "beam":
@@ -272,7 +279,8 @@ function keyPressed() {
     for(j=0;j<77;j++){
       rect(keys[j].x, keys[j].y, keys[j].w, keys[j].h, 4);
     }
-    playAudio('assets/enter.mp3');
+//    playAudio('assets/enter.mp3');
+    playAudio('assets/'+ soundType +'.mp3');
   } else if (kc == 32) { //Space
     fill(c);
     // for(var i=0;i<24;i++){
@@ -285,13 +293,13 @@ function keyPressed() {
         currentBeam = 0;
       }
     }
-    playAudio('assets/'+sound_number+'.mp3');
+    playAudio('assets/'+ soundType +'.mp3');
   } else {
     var n = numByKc(kc);
     if (n != 0){
       fill(c);
       rect(keys[n].x, keys[n].y, keys[n].w, keys[n].h, 4);
-      playAudio('assets/'+sound_number+'.mp3');
+      playAudio('assets/'+ soundType +'.mp3');
     }
   }
 }

@@ -30,6 +30,28 @@
       <option value="none">none</option>
     </select> -->
     <div class="adjustArea">
+    <div class="adjust" id="sound_div">
+      Sound
+      <select name="sound" id="sound">
+        <option value="none">0: none</option>
+        <option value="keyboard">1: keyboard</option>
+        <option value="typewriter">2: typewriter</option>
+        <option value="digital1">3: digital1</option>
+        <option value="digital2">4: digital2</option>
+        <option value="wadaiko">5: wadaiko</option>
+        <option value="cat">6: cat</option>
+      </select>
+    </div>
+    <div class="adjust" id="effect_div">
+      Effect
+      <select name="effect" id="effect">
+        <option value="particle">1: particle</option>
+        <option value="ray">2: ray</option>
+        <option value="beam">3: beam</option>
+        <option value="wave">4: wave</option>
+        <option value="stellar">5: stellar</option>
+      </select>
+    </div>
     <div class="adjust" id="particle">
       Particles <div id="pnum_txt">0</div>
       <input type="range" name="particlenum" id="pnum_range" min="1" max="255">
@@ -42,10 +64,10 @@
       Diffusion <div id="diffR_txt">0</div>
       <input type="range" name="diffRnum" id="diffR_range" min="1" max="240">
     </div>
-    <div class="adjust" id="sound">
+    <!-- <div class="adjust" id="sound">
       Sound <div id="sound_txt">0</div>
       <input type="range" name="soundnum" id="sound_range" min="0" max="14">
-    </div>
+    </div> -->
     <div class="adjust" id="beam">
       <div>Beam</div>
       None<input type="radio" name="beam" value="none" id="beam_none">
@@ -55,16 +77,6 @@
     <div class="adjust" id="beam_speed">
       Speed <div id="speed_txt">0</div>
       <input type="range" name="beamnum" id="speed_range" min="1" max="48">
-    </div>
-    <div class="adjust" id="effect_div">
-      Effect
-      <select name="effect" id="effect">
-        <option value="stellar">stellar</option>
-        <option value="ray">ray</option>
-        <option value="particle">particle</option>
-        <option value="beam">beam</option>
-        <option value="wave">wave</option>
-      </select>
     </div>
   </div>
     <!-- <select name="layout" onChange="changeLayout(this.options[this.options.selectedIndex].text)">
