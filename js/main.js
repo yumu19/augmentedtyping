@@ -81,6 +81,8 @@ function initParticle(){
 function setup() {
   frameRate(30);
   createCanvas(1280, 800);
+  //startRecord();
+
   k = "";
   textSize(1);
   c = color(100,200,255);
@@ -353,6 +355,7 @@ if (kc == 49){
       playAudio('assets/'+ soundType +'.mp3');
     }
   }
+  addRecord(kc);
 }
 
 function playAudio(src){

@@ -4,28 +4,22 @@ function startRecord(){
   console.log(oldTime);
 }
 
-function addRecord(c,w,dc){
+function addRecord(c){
 	var now = new Date();
   var time = now.getTime() ;
 	var readableTime = dateString();
-	var isSuccess = (c == dc);
   var dict = {
     char: c,
 		time: time,
-		readableTime: readableTime,
-    duration: now - oldTime,
-		word: w,
-		directChar: dc,
-		isSuccess: isSuccess
+		readableTime: readableTime
 	}
-	records.push(dict);
-  oldTime = now;
+	console.log(dict);
+	sendRecord(dict);
 }
 
-function stopRecord(){
-	isRecording = false;
+function sendRecord(r){
   var url = "http://localhost:1337";
-  str = JSON.stringify(records);
+  str = JSON.stringify(r);
   $.ajax({
   		type:'POST',
   		url:url,
@@ -35,7 +29,6 @@ function stopRecord(){
   //		data:{data:JSONstr, id:id}
   		success: function(data) {
   			console.log("Upload Success");
-				records = new Array();
   		},
   		error: function(XMLHttpRequest, textStatus, errorThrown) {
   			alert("error");

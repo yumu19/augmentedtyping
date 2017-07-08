@@ -2,7 +2,7 @@ var http = require('http');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var dataSchema = new Schema({ data: Schema.Types.Mixed});
-var Data = mongoose.model('directyping', dataSchema);
+var Data = mongoose.model('augmentedtyping', dataSchema);
 mongoose.connect('mongodb://localhost/test');
 
 http.createServer(function (req, res) {
