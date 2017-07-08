@@ -6,7 +6,7 @@ var dipX = 17;
 var dipY = 17;
 var origX = 20;
 var origY = 100;
-var origY = 250;
+var origY = 300;
 var keys = [];
 var c;
 var offsetX = 2;
@@ -34,8 +34,8 @@ var totalStellarNum = 128;
 var stellars = [totalStellarNum];
 var stellarNum = 16;
 var currentStellar = 0;
-var effectType = "none"
-var soundType = "none"
+var effectType = "particle"
+var soundType = "digital2"
 var effectLimit = false;
 
 function changeParticleNum(i){
@@ -257,6 +257,8 @@ function draw() {
     noStroke();
     rect(0,0,1280,origY);
   }
+
+  drawLegend();
 }
 
 function keyPressed() {
@@ -312,7 +314,17 @@ function keyPressed() {
       break;
 }
   //console.log(kc);
-  if (kc == 13){ //Enter
+if (kc == 49){
+  effectType = "particle"
+} else if (kc == 50){
+  effectType = "ray"
+} else if (kc == 51){
+  effectType = "beam"
+} else if (kc == 52){
+  effectType = "wave"
+} else if (kc == 53){
+  effectType = "stellar"
+} else if (kc == 13){ //Enter
     changeColor();
     fill(c);
     for(j=0;j<77;j++){
@@ -526,4 +538,37 @@ function drawChar(str,posX,posY,isFilled){
     }
     // text(str,posX+offsetX,posY+offsetY);
   }
+}
+
+function drawLegend(){
+  noStroke();
+  fill(c);
+  ellipse(72,380,20,20);
+  ellipse(52,405,20,20);
+  ellipse(92,405,20,20);
+  textSize(30);
+  text("abc",238,400);
+
+  stroke(c);
+  strokeWeight(2);
+  noFill();
+  line(165,365,165,415);
+  line(180,365,180,415);
+  line(195,365,195,415);
+  ellipse(348,390,16,16);
+  ellipse(348,390,30,30);
+  ellipse(348,390,44,44);
+
+  var thisx = 435;
+  var thisy = 390;
+  var thiswidth = 24;
+  var thisheight = 24;
+  fill(c);
+  beginShape();
+  for (var t = 0; t < TWO_PI; t += delta) {
+      vertex(thisx + thiswidth * Math.pow(Math.cos(t), 3), thisy + thisheight * Math.pow(Math.sin(t), 3));
+  }
+  endShape(CLOSE);
+
+//  line(this.x1,this.y1,this.x2,this.y2)
 }
