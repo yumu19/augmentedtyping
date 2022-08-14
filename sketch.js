@@ -180,7 +180,7 @@ function keyPressed() {
   prevKc = kc;
   kc = keyCode;
   if (isRecording){
-    addRecord(lCharByKc(kc,layout),word,currentChar);
+    //addRecord(lCharByKc(kc,layout),word,currentChar);
   }
 
   //  print(kc);

@@ -14,7 +14,7 @@ function addRecord(c){
 		readableTime: readableTime
 	}
 	console.log(dict);
-	sendRecord(dict);
+	//sendRecord(dict);
 }
 
 function sendRecord(r){
